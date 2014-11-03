@@ -9,6 +9,7 @@ import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
 import models.TogowsResult
 import scala.concurrent.Future
+import scala.language.postfixOps
 
 object Togows extends TogowsTrait {
   implicit val context = scala.concurrent.ExecutionContext.Implicits.global

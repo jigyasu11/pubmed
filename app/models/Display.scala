@@ -5,7 +5,7 @@ import utils.Implicits._
 
 case class Author(name: String, institute: String)
 
-case class Display(primaryAuthor: Author, otherAuthors: Seq[Author], title: String) {
+case class Display(primaryAuthor: Author, otherAuthors: Option[Seq[Author]], title: String, journal: String) {
   
   def toJson = Json.toJson(this)
   

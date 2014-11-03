@@ -1,0 +1,27 @@
+@(myForm: Form[SearchForm])
+
+@import helper._
+
+
+@import helper.twitterBootstrap._
+
+@main {
+	
+	<h1>Please provide details of author</h1>
+
+	@form(action = routes.Application.submit) {
+		<fieldset>
+			@inputText(myForm("firstName"), '_label -> "First Name", '_default -> "Pls. provide first name")
+		
+			@inputText(myForm("lastName"), '_label -> "Last Name", '_default -> "Pls. provide last name")
+		
+			@inputText(myForm("limit"))
+		</fieldset>
+		
+		<div class="actions">
+		   <input type="submit" value="Submit" class="btn primary"> or
+		   <a href="@routes.Application.index()" class=btn">Reset</a>
+		</div>
+		
+	}
+}

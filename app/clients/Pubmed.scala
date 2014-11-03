@@ -10,6 +10,7 @@ import utils.Implicits._
 import play.api.libs.json.JsSuccess
 import play.api.libs.json.JsError
 import scala.concurrent.Await
+import scala.language.postfixOps
 
 
 object Pubmed extends PubmedTrait {

@@ -1,0 +1,56 @@
+@(results: List[Display])
+
+@addOtherAuthorsColumn(otherAuthors: Option[Seq[Author]], count: Int) = {
+	@otherAuthors match {
+	case Some(authors) => {
+			@for(otherAuthor <- authors.take(count)) {
+		      <td>@otherAuthor.name</td>
+		      <td>@otherAuthor.institute</td>
+		    }
+		    @for(c <- 0 until count - authors.size) {
+		      <td>----</td>
+		      <td>----</td>
+		    }
+	   }
+	   case None => {
+	      @for(c <- 0 until count) {
+		      <td>----</td>
+		      <td>----</td>
+		  }
+	   }     
+	}
+}
+
+@header(title: String) = {
+	<th>@title</th>
+}
+
+@main {
+	<h1>Following publications are found</h1>
+	<table id="myTable" class="table table-hover">
+		<thead class="success">
+			@header("Paper Title")
+			@header("Journal")
+			@header("Primary Author")
+			@header("Institute")
+			@header("Second Author")
+			@header("Institute")
+			@header("Third Author")
+			@header("Institute")
+		</thead>
+		<tbody>
+		    @results.map {
+		    	case (display) => {
+		 	   		<tr class="active">
+		 	   		 	<td>@display.title</td>
+		 	   			<td>@display.journal</td>
+		    			<td>@display.primaryAuthor.name</td>
+		    			<td>@display.primaryAuthor.institute</td>
+		    			@addOtherAuthorsColumn(display.otherAuthors, 2)
+		    		</tr>
+		    	}
+			}
+		
+		</tbody>
+	</table>
+}
